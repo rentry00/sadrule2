@@ -1246,27 +1246,27 @@ foreach ($url in $urlList) {
                 # 匹配 Adblock/Easylist 格式的规则
                
                 # 处理ipv4
-                if ($line -match '^\s*([0-9]{1,3}\.){3}[0-9]{1,3}\s*$') {
+                if ($_ -match '^\s*([0-9]{1,3}\.){3}[0-9]{1,3}\s*$') {
                     
-                    $domain = $line + "/" + $number
+                    $domain = $Matches[0]  + "/" + $number
                     #Write-Host "$domain"
                     $uniqueRules.Add($domain) | Out-Null
                 }
                 # 处理IPv6
-                elseif ($line -match '\s*([0-9a-fA-F:]+)+\s*$') {
-                    $domain = $line + "/" + $number
+                elseif ($_ -match '\s*([0-9a-fA-F:]+)+\s*$') {
+                    $domain = $Matches[0]  + "/" + $number
                     $uniqueRules.Add($domain) | Out-Null
                 }
                 # 处理CIDR
                 elseif ($line -match '^\s*([0-9]{1,3}\.){3}[0-9]{1,3}/\d{1,3}\s*$') {
                     
-                    $domain = $line 
+                    $domain = $Matches[0] 
                     #Write-Host "$domain"
                     $uniqueRules.Add($domain) | Out-Null
                 }
                 # 处理CIDR
                 elseif ($line -match '^\s*([0-9a-fA-F:]+)+/\d{1,3}\s*$') {
-                    $domain = $line
+                    $domain = $Matches[0]
                     $uniqueRules.Add($domain) | Out-Null
                 }
             }
