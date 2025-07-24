@@ -1246,14 +1246,14 @@ foreach ($url in $urlList) {
                 # 匹配 Adblock/Easylist 格式的规则
                
                 # 处理ipv4
-                if ($_ -match '^\s*([0-9]{1,3}\.){3}[0-9]{1,3}\s*$') {
+                if ($line -match '^\s*([0-9]{1,3}\.){3}[0-9]{1,3}\s*$') {
                     
                     $domain = $Matches[0]  + "/" + $number
                     #Write-Host "$domain"
                     $uniqueRules.Add($domain) | Out-Null
                 }
                 # 处理IPv6
-                elseif ($_ -match '\s*([0-9a-fA-F:]+)+\s*$') {
+                elseif ($line -match '\s*([0-9a-fA-F:]+)+\s*$') {
                     $domain = $Matches[0]  + "/" + $number
                     $uniqueRules.Add($domain) | Out-Null
                 }
